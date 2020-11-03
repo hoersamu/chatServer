@@ -14,13 +14,5 @@ function bootstrap() {
 	app.listen(port, () => {
 		console.log(`App listening on port: ${port}`);
 	});
-	(async () => {
-		const key = await openpgp.generateKey({
-			userIds: [{}], // you can pass multiple user IDs
-			rsaBits: 4096, // RSA key size
-			passphrase: 'super long and hard to guess secret', // protects the private key
-		});
-		console.log(key);
-	})();
 }
 bootstrap();

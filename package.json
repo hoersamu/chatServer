@@ -5,8 +5,8 @@
 	"main": "main.js",
 	"scripts": {
 		"build": "tsc --build tsconfig.json",
-		"start": "node ./dist/main.js",
-		"watch": "nodemon --config nodemon.json src/main.ts"
+		"start": "node ./dist/app/main.js",
+		"watch": "nodemon --config nodemon.json src/app/main.ts"
 	},
 	"repository": {
 		"type": "git",
