@@ -1,7 +1,7 @@
 import { GenericClassDecorator, Type } from '../util';
 
 /**
- * @param singleton Currently unused
+ * @param singleton
  * @returns {GenericClassDecorator<Type<any>>}
  * @constructor
  */
