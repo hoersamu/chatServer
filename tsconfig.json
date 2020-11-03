@@ -4,6 +4,7 @@
 		"outDir": "./dist",
 		"downlevelIteration": true,
 		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
 		"module": "commonjs",
 		"moduleResolution": "node",
 		"importHelpers": true,
