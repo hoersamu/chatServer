@@ -1,14 +1,14 @@
 import 'reflect-metadata';
-import { Type } from './util';
+import { Type } from '../util';
 
 /**
  * The Injectore stores services and resolves requested instances.
  */
-export const Injector = new (class {
+export class Injector {
 	cache: { [key: string]: object } = {};
 
 	/**
-	 * Resolvves instances by injecting required services
+	 * Resolves instances by injecting required services
 	 * @param {Type<any>} target
 	 * @returns {T}
 	 */
@@ -17,7 +17,7 @@ export const Injector = new (class {
 		let tokens = Reflect.getMetadata('design:paramtypes', target) || [],
 			injections = tokens.map((token) => {
 				if (this.cache[token.name]) return this.cache[token.name];
-				return Injector.resolve<any>(token);
+				return this.resolve<any>(token);
 			});
 
 		// Creates the class with all dependencies
@@ -30,4 +30,4 @@ export const Injector = new (class {
 
 		return finishedTarget;
 	}
-})();
+}

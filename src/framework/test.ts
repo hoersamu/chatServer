@@ -1,36 +1,35 @@
 import 'reflect-metadata';
 import { Injectable } from './decorators/injectable.decorator';
-import { Injector } from './injector';
+import { Module } from './decorators/module.decorator';
+import { Factory } from './factory';
 
 @Injectable()
 class Foo {
-	num: number;
-
 	constructor() {
-		this.num = Math.random();
-	}
-
-	doFooStuff() {
-		console.log(this.num);
+		console.log('foo');
 	}
 }
 
 @Injectable()
-class Bar {
-	constructor(public foo: Foo) {}
-
-	doBarStuff() {
-		console.log('bar');
+class Fooo {
+	constructor() {
+		console.log('foo');
 	}
 }
 
 @Injectable()
-class Foobar {
-	constructor(public foo: Foo, public bar: Bar) {}
+class Foofoo {
+	constructor(private foo: Foo) {
+		console.log('foofoo');
+	}
 }
 
-const foobar = Injector.resolve<Foobar>(Foobar);
-foobar.bar.doBarStuff();
-foobar.foo.doFooStuff();
-foobar.bar.foo.doFooStuff();
-foobar.foo.doFooStuff();
+@Module({ providers: [Foo, Foofoo], exports: [Foo, Fooo] })
+class Bar {}
+
+@Module({
+	imports: [Bar],
+})
+class Foobar {}
+
+Factory.create(Foobar);
